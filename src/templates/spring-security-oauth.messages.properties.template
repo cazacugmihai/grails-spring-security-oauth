@@ -1,0 +1,27 @@
+OAuthCreateAccountCommand.${usernamePropertyName}.label = ${usernameCapPropertyName}
+OAuthCreateAccountCommand.${usernamePropertyName}.nullable = ${usernameCapPropertyName} is required.
+OAuthCreateAccountCommand.${usernamePropertyName}.blank = ${usernameCapPropertyName} is required.
+OAuthCreateAccountCommand.${usernamePropertyName}.error.unique = Sorry, that ${usernamePropertyName} is already taken.
+OAuthCreateAccountCommand.${passwordPropertyName}1.label = ${passwordCapPropertyName}
+OAuthCreateAccountCommand.${passwordPropertyName}2.label = ${passwordCapPropertyName} re-type
+OAuthCreateAccountCommand.${passwordPropertyName}.error.mismatch = The ${passwordPropertyName}s must match.
+OAuthCreateAccountCommand.${passwordPropertyName}.error.strength = Your ${passwordPropertyName} must contain at least one number and at least one symbol.
+OAuthCreateAccountCommand.${passwordPropertyName}.error.${usernamePropertyName} = Your ${passwordPropertyName} must be different from your ${usernamePropertyName}.
+OAuthCreateAccountCommand.${passwordPropertyName}1.nullable = ${passwordCapPropertyName} is required.
+OAuthCreateAccountCommand.${passwordPropertyName}1.blank = ${passwordCapPropertyName} is required.
+OAuthCreateAccountCommand.${passwordPropertyName}1.minSize.notmet = ${passwordCapPropertyName} must be between 8 and 64 characters.
+
+OAuthLinkAccountCommand.${usernamePropertyName}.label = ${usernameCapPropertyName}
+OAuthLinkAccountCommand.${usernamePropertyName}.nullable = Please enter your ${usernamePropertyName}.
+OAuthLinkAccountCommand.${usernamePropertyName}.blank = Please enter your ${usernamePropertyName}.
+OAuthLinkAccountCommand.${usernamePropertyName}.not.exists = Sorry, we were not able to find a user with that ${usernamePropertyName} and ${passwordPropertyName}.
+OAuthLinkAccountCommand.${passwordPropertyName}.label = ${passwordCapPropertyName}
+OAuthLinkAccountCommand.${passwordPropertyName}.nullable = ${passwordCapPropertyName} is required.
+OAuthLinkAccountCommand.${passwordPropertyName}.blank = ${passwordCapPropertyName} is required.
+
+springSecurity.oauth.registration.link.not.exists = No user was found with this {0} account.
+springSecurity.oauth.registration.login.legend = Link to an existing account
+springSecurity.oauth.registration.login.button = Login
+springSecurity.oauth.registration.create.legend = Create a new account
+springSecurity.oauth.registration.create.button = Create
+springSecurity.oauth.registration.back = Back to login page
