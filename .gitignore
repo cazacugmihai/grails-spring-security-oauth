@@ -9,4 +9,6 @@ target
 /web-app
 grails-app/i18n
 *~
+plugin.xml
+*.zip
 
