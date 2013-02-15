@@ -11,4 +11,5 @@ grails-app/i18n
 *~
 plugin.xml
 *.zip
+*.zip.sha1
 
