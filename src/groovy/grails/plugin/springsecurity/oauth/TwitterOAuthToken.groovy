@@ -16,8 +16,7 @@
 package grails.plugin.springsecurity.oauth
 
 import org.scribe.model.Token
-import org.springframework.social.twitter.api.TwitterProfile
-import org.springframework.social.twitter.api.impl.TwitterTemplate
+
 
 /**
  * Spring Security authentication token for Twitter users. It's a standard {@link OAuthToken}
@@ -29,19 +28,16 @@ class TwitterOAuthToken extends OAuthToken {
 
     public static final String PROVIDER_NAME = "twitter"
 
-    TwitterTemplate twitterTemplate
-    TwitterProfile twitterProfile
+    String profileId
 
-    TwitterOAuthToken(Token accessToken, TwitterTemplate twitterTemplate) {
+    TwitterOAuthToken(Token accessToken, String profileId) {
         super(accessToken)
-
-        this.twitterTemplate = twitterTemplate
-        this.twitterProfile = twitterTemplate.userOperations().userProfile
-        this.principal = twitterProfile.name ?: twitterProfile.screenName
+        this.profileId = profileId
+        this.principal = profileId
     }
 
     String getSocialId() {
-        return twitterProfile.id
+        return profileId
     }
 
     String getProviderName() {

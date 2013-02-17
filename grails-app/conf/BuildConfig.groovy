@@ -22,8 +22,6 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        compile "org.springframework.social:spring-social-core:1.0.2.RELEASE"
-        compile "org.springframework.social:spring-social-twitter:1.0.2.RELEASE"
         runtime "org.scribe:scribe:1.3.2"
         test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }
