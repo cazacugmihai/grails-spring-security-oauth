@@ -22,12 +22,8 @@ import org.springframework.social.facebook.api.impl.FacebookTemplate
  * @author Mihai CAZACU(cazacugmihai@gmail.com)
  */
 class FacebookSpringSecurityOAuthService {
-    // def oauthService
 
     def createAuthToken(Token accessToken) {
-//        def response = oauthService.getFacebookResource(accessToken, "https://graph.facebook.com/me")
-//        def user = JSON.parse(response.body)
-
         FacebookTemplate facebookTemplate = new FacebookTemplate(accessToken.token)
         return new FacebookOAuthToken(accessToken, facebookTemplate)
     }
