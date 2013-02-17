@@ -16,8 +16,7 @@
 package grails.plugin.springsecurity.oauth
 
 import org.scribe.model.Token
-import org.springframework.social.facebook.api.FacebookProfile
-import org.springframework.social.facebook.api.impl.FacebookTemplate
+
 
 /**
  * Spring Security authentication token for Facebook users. It's a standard {@link OAuthToken}
@@ -29,19 +28,16 @@ class FacebookOAuthToken extends OAuthToken {
 
     public static final String PROVIDER_NAME = "facebook"
 
-    FacebookTemplate facebookTemplate
-    FacebookProfile facebookProfile
+    String profileId
 
-    FacebookOAuthToken(Token accessToken, FacebookTemplate facebookTemplate) {
+    FacebookOAuthToken(Token accessToken, String profileId) {
         super(accessToken)
-
-        this.facebookTemplate = facebookTemplate
-        this.facebookProfile = facebookTemplate.userOperations().userProfile
-        this.principal = facebookProfile.name
+        this.profileId = profileId
+        this.principal = profileId
     }
 
     String getSocialId() {
-        return facebookProfile.id
+        return profileId
     }
 
     String getProviderName() {

@@ -16,20 +16,22 @@
 package grails.plugin.springsecurity.oauth
 
 import org.scribe.model.Token
-import org.springframework.social.facebook.api.impl.FacebookTemplate
+import grails.converters.JSON
 
 /**
  * @author Mihai CAZACU(cazacugmihai@gmail.com)
  */
 class FacebookSpringSecurityOAuthService {
-    // def oauthService
+
+    def oauthService
 
     def createAuthToken(Token accessToken) {
-//        def response = oauthService.getFacebookResource(accessToken, "https://graph.facebook.com/me")
-//        def user = JSON.parse(response.body)
-
-        FacebookTemplate facebookTemplate = new FacebookTemplate(accessToken.token)
-        return new FacebookOAuthToken(accessToken, facebookTemplate)
+        def res = oauthService.getFacebookResource(accessToken, 'https://graph.facebook.com/me')
+        def user = JSON.parse(response.body)
+        if (!user?.id) {
+            throw new Exception("No user id from Facebook")
+        }
+        return new FacebookOAuthToken(accessToken, user.id)
     }
 
 }
