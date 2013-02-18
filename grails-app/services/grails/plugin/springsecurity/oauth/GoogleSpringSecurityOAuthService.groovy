@@ -24,10 +24,18 @@ class GoogleSpringSecurityOAuthService {
 
     def oauthService
 
+    /*
+     * Requires scope of "https://www.googleapis.com/auth/userinfo.email"
+     * Expected response:
+     *   { "email": "username@gmail.com", "verified_email": true }
+     */
     def createAuthToken(accessToken) {
-        // Requires scope of "https://www.googleapis.com/auth/userinfo.email"
         def response = oauthService.getGoogleResource(accessToken, "https://www.googleapis.com/oauth2/v1/userinfo")
         def user = JSON.parse(response.body)
+        if (! user?.email) {
+            log.error "No user email from Google. Response:\n${response.body}"
+            throw new OAuthLoginException("No user email from Google")
+        }
         return new GoogleOAuthToken(accessToken, user.email)
     }
 
