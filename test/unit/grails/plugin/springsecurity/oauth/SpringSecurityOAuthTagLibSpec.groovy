@@ -44,6 +44,30 @@ class SpringSecurityOAuthTagLibSpec extends Specification {
             'linkedin'  | _
             'twitter'   | _
     }
+    
+    def "ifLoggedInWith should print empty string if session is invalid"() {
+        given:
+            def sessionKey = "oas:${provider}"
+            session[sessionKey] = token
+            springSecurityService.isLoggedIn = { ->
+                true
+            }
+            oauthService.findSessionKeyForAccessToken = { providerName ->
+                sessionKey
+            }
+            tagLib.springSecurityService = springSecurityService
+            tagLib.oauthService = oauthService
+            def template = "<s2o:ifLoggedInWith provider=\"${provider}\">Logged in using ${provider}</s2o:ifLoggedInWith>"
+        and:
+            def renderedContent = applyTemplate(template)
+        expect:
+            renderedContent == ""
+        where:
+            provider    | token
+            'facebook'  | null
+            'google'    | ""
+            'linkedin'  | "a_token_string"
+    }
 
     def "ifLoggedInWith should print empty string if user is not logged in"() {
         given:

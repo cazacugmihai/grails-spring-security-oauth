@@ -1,5 +1,7 @@
 package grails.plugin.springsecurity.oauth
 
+import org.scribe.model.Token
+
 class SpringSecurityOAuthTagLib {
 
     static namespace = 's2o'
@@ -33,6 +35,6 @@ class SpringSecurityOAuthTagLib {
         }
         def currentUser = springSecurityService.currentUser
         def sessionKey = oauthService.findSessionKeyForAccessToken(provider)
-        return (session[sessionKey])
+        return (session[sessionKey] instanceof Token)
     }
 }
