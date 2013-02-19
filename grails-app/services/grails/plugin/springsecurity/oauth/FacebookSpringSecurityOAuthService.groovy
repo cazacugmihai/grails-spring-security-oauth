@@ -27,9 +27,16 @@ class FacebookSpringSecurityOAuthService {
 
     def createAuthToken(Token accessToken) {
         def response = oauthService.getFacebookResource(accessToken, 'https://graph.facebook.com/me')
-        def user = JSON.parse(response.body)
-        if (!user?.id) {
-            throw new Exception("No user id from Facebook")
+        def user        
+        try {
+            user = JSON.parse(response.body)
+        } catch (Exception e) {
+            log.error "Error parsing response from Facebook. Response:\n${response.body}"
+            throw new OAuthLoginException("Error parsing response from Facebook", e)
+        }
+        if (! user?.id) {
+            log.error "No user id from Facebook. Response:\n${response.body}"
+            throw new OAuthLoginException("No user id from Facebook")
         }
         return new FacebookOAuthToken(accessToken, user.id)
     }
