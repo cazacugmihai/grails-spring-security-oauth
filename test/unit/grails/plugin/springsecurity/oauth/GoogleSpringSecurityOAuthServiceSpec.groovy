@@ -32,24 +32,27 @@ class GoogleSpringSecurityOAuthServiceSpec extends Specification {
 
     def "should throw OAuthLoginException for unexpected response"() {
         given:
+            def exception = null
             def oauthAccessToken = new Token('token', 'secret', 'rawResponse=rawResponse')
-            def response = [body: '{"test"="test"}']
+            def response = [body: responseBody]
             oauthService.getGoogleResource = { accessToken, url ->
                 return response
             }
             service.oauthService = oauthService
-        when:
-            def token = service.createAuthToken( oauthAccessToken )
-        then:
-            thrown OAuthLoginException
-        /*
+        and:
+            try {
+                def token = service.createAuthToken( oauthAccessToken )
+            } catch (Throwable throwable) {
+                exception = throwable
+            }
+        expect:
+            exception instanceof OAuthLoginException
         where:
             responseBody      |  _
             ''                |  _
             null              |  _
             '{}'              |  _
             '{"test"="test"}' |  _
-        */
     }
     
     def "should return the correct OAuth token"() {

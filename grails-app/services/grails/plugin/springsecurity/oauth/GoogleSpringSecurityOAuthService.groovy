@@ -31,7 +31,13 @@ class GoogleSpringSecurityOAuthService {
      */
     def createAuthToken(accessToken) {
         def response = oauthService.getGoogleResource(accessToken, "https://www.googleapis.com/oauth2/v1/userinfo")
-        def user = JSON.parse(response.body)
+        def user
+        try {
+            user = JSON.parse(response.body)
+        } catch (Exception e) {
+            log.error "Error parsing response from Google. Response:\n${response.body}"
+            throw new OAuthLoginException("Error parsing response from Google", e)
+        }
         if (! user?.email) {
             log.error "No user email from Google. Response:\n${response.body}"
             throw new OAuthLoginException("No user email from Google")
