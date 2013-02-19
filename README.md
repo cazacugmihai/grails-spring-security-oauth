@@ -67,6 +67,7 @@ oauth {
 Once you have an user domain and configured provider names, go with:
 
     grails s2-init-oauth [domain-class-package] [oauthid-class-name]
+
 Example:
 
     grails s2-init-oauth com.yourapp OAuthID
@@ -79,21 +80,25 @@ that creates:
 
 - the view `springSecurityOAuth/askToLinkOrCreateAccount.gsp`
 
-
-
 Finally, add
 
 ```groovy
-    static hasMany = [oAuthIDs: OAuthID]
+static hasMany = [oAuthIDs: OAuthID]
 ```
 
-to you user domain class and use this lines in your login view:
+to you user domain class.
+
+In your view you can use the taglib exposed from this plugin and from OAuth plugin to create links and to know if the user is authenticated with a given provider:
 
 ```xml
-    <oauth:connect provider="twitter" id="twitter-connect-link">Twitter</oauth:connect>
-    <oauth:connect provider="facebook" id="facebook-connect-link">Facebook</oauth:connect>
-    <oauth:connect provider="google" id="google-connect-link">Google</oauth:connect>
-    <oauth:connect provider="yahoo" id="yahoo-connect-link">Yahoo</oauth:connect>
+<oauth:connect provider="twitter" id="twitter-connect-link">Twitter</oauth:connect>
+<oauth:connect provider="facebook" id="facebook-connect-link">Facebook</oauth:connect>
+<oauth:connect provider="google" id="google-connect-link">Google</oauth:connect>
+<oauth:connect provider="yahoo" id="yahoo-connect-link">Yahoo</oauth:connect>
+Logged with facebook? <s2o:ifLoggedInWith provider="facebook">yes</s2o:ifLoggedInWith><s2o:ifNotLoggedInWith provider="facebook">no</s2o:ifNotLoggedInWith>
+Logged with twitter? <s2o:ifLoggedInWith provider="twitter">yes</s2o:ifLoggedInWith><s2o:ifNotLoggedInWith provider="twitter">no</s2o:ifNotLoggedInWith>
+Logged with google? <s2o:ifLoggedInWith provider="google">yes</s2o:ifLoggedInWith><s2o:ifNotLoggedInWith provider="google">no</s2o:ifNotLoggedInWith>
+Logged with linkedin? <s2o:ifLoggedInWith provider="linkedin">yes</s2o:ifLoggedInWith><s2o:ifNotLoggedInWith provider="linkedin">no</s2o:ifNotLoggedInWith>
 ```
 
 That's it! 
