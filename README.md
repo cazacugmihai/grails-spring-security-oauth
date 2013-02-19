@@ -67,12 +67,19 @@ oauth {
 Once you have an user domain and configured provider names, go with:
 
     grails s2-init-oauth [domain-class-package] [oauthid-class-name]
-
-that creates an OAuthID class in the specified package.
-
 Example:
 
     grails s2-init-oauth com.yourapp OAuthID
+
+that creates:
+
+- the domain class `com.yourapp.OAuthID`
+
+- the controller class `com.yourapp.SpringSecurityOAuthController`
+
+- the view `springSecurityOAuth/askToLinkOrCreateAccount.gsp`
+
+
 
 Finally, add
 
