@@ -16,17 +16,29 @@
 package grails.plugin.springsecurity.oauth
 
 import org.scribe.model.Token
-import org.springframework.social.facebook.api.impl.FacebookTemplate
 
 /**
- * @author Mihai CAZACU(cazacugmihai@gmail.com)
+ * OAuth authentication token for Linkedin users.
+ *
  */
-class FacebookSpringSecurityOAuthService {
+class LinkedinOAuthToken extends OAuthToken {
 
-    def createAuthToken(Token accessToken) {
-        FacebookTemplate facebookTemplate = new FacebookTemplate(accessToken.token)
-        return new FacebookOAuthToken(accessToken, facebookTemplate)
+    public  static final String PROVIDER_NAME = "linkedin"
+
+    String profileId
+
+    LinkedinOAuthToken(Token scribeToken, profileId) {
+        super(scribeToken)
+        this.profileId = profileId
+        this.principal = profileId
+    }
+
+    String getSocialId() {
+        return profileId
+    }
+
+    String getProviderName() {
+        return PROVIDER_NAME
     }
 
 }
-

@@ -15,18 +15,14 @@
  */
 package grails.plugin.springsecurity.oauth
 
-import org.scribe.model.Token
-import org.springframework.social.facebook.api.impl.FacebookTemplate
+class OAuthLoginException extends RuntimeException {
 
-/**
- * @author Mihai CAZACU(cazacugmihai@gmail.com)
- */
-class FacebookSpringSecurityOAuthService {
+    OAuthLoginException(String message) {
+        super(message)
+    }
 
-    def createAuthToken(Token accessToken) {
-        FacebookTemplate facebookTemplate = new FacebookTemplate(accessToken.token)
-        return new FacebookOAuthToken(accessToken, facebookTemplate)
+    OAuthLoginException(String message, Throwable t) {
+        super(message)
     }
 
 }
-
