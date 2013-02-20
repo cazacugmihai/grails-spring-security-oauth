@@ -6,5 +6,10 @@ eclipse
 stacktrace.log
 target
 /plugins
-/web-app/plugins
-/web-app/WEB-INF/classes
+/web-app
+grails-app/i18n
+*~
+plugin.xml
+*.zip
+*.zip.sha1
+

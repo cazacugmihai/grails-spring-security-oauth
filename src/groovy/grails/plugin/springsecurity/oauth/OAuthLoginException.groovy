@@ -15,33 +15,14 @@
  */
 package grails.plugin.springsecurity.oauth
 
-import org.scribe.model.Token
+class OAuthLoginException extends RuntimeException {
 
-
-/**
- * Spring Security authentication token for Facebook users. It's a standard {@link OAuthToken}
- * that returns the Facebook name as the principal.
- *
- * @author Mihai CAZACU(cazacugmihai@gmail.com)
- */
-class FacebookOAuthToken extends OAuthToken {
-
-    public static final String PROVIDER_NAME = "facebook"
-
-    String profileId
-
-    FacebookOAuthToken(Token accessToken, String profileId) {
-        super(accessToken)
-        this.profileId = profileId
-        this.principal = profileId
+    OAuthLoginException(String message) {
+        super(message)
     }
 
-    String getSocialId() {
-        return profileId
-    }
-
-    String getProviderName() {
-        return PROVIDER_NAME
+    OAuthLoginException(String message, Throwable t) {
+        super(message)
     }
 
 }
