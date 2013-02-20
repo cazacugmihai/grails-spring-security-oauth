@@ -87,6 +87,17 @@ class SpringSecurityOAuthController {
     }
 
     def askToLinkOrCreateAccount = {
+        if (springSecurityService.loggedIn) {
+            def currentUser = springSecurityService.currentUser
+            OAuthToken oAuthToken = session[SPRING_SECURITY_OAUTH_TOKEN]
+            assert oAuthToken, "There is no auth token in the session!"
+            currentUser.addTo${oAuthIdsCapPropertyName}(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: currentUser)
+            if (currentUser.validate() && currentUser.save()) {
+                oAuthToken = updateOAuthToken(oAuthToken, currentUser)
+                authenticateAndRedirect(oAuthToken, defaultTargetUrl)
+                return
+            }
+        }
     }
 
     /**
