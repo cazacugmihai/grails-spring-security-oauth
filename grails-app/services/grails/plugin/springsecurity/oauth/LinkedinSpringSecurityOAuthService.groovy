@@ -33,11 +33,21 @@ class LinkedinSpringSecurityOAuthService {
     */
     def createAuthToken(accessToken) {
         def response = oauthService.getLinkedinResource(accessToken, "http://api.linkedin.com/v1/people/~?format=json")
-        def user = JSON.parse(response.body)
-        def url = user.siteStandardProfileRequest.url
+        def user
+        try {
+            user = JSON.parse(response.body)
+        } catch (Exception e) {
+            log.error "Error parsing response from Linkedin. Response:\n${response.body}"
+            throw new OAuthLoginException("Error parsing response from Linkedin", e)
+        }
+        def url = user?.siteStandardProfileRequest?.url
+        if (!url) {
+            log.error "No profile url from Linkedin. Response:\n${response.body}"
+            throw new OAuthLoginException("No profile url from Linkedin")
+        }
         def query = new URL(url).query
         if ( !query ) {
-            throw new Exception("No query string from Linkedin")
+            throw new OAuthLoginException("No query string from Linkedin")
         }
         def params = query.split('&').inject([:]) { map, kv-> 
             def (key, value) = kv.split('=').toList(); 
@@ -45,7 +55,7 @@ class LinkedinSpringSecurityOAuthService {
             map
         }
         if (!params?.id) {
-            throw new Exception("No user id from Linkedin")
+            throw new OAuthLoginException("No user id from Linkedin")
         }
         return new LinkedinOAuthToken(accessToken, params.id)
     }
