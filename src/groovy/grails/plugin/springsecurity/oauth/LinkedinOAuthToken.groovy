@@ -17,21 +17,18 @@ package grails.plugin.springsecurity.oauth
 
 import org.scribe.model.Token
 
-
 /**
- * Spring Security authentication token for Facebook users. It's a standard {@link OAuthToken}
- * that returns the Facebook name as the principal.
+ * OAuth authentication token for Linkedin users.
  *
- * @author Mihai CAZACU(cazacugmihai@gmail.com)
  */
-class FacebookOAuthToken extends OAuthToken {
+class LinkedinOAuthToken extends OAuthToken {
 
-    public static final String PROVIDER_NAME = "facebook"
+    public  static final String PROVIDER_NAME = "linkedin"
 
     String profileId
 
-    FacebookOAuthToken(Token accessToken, String profileId) {
-        super(accessToken)
+    LinkedinOAuthToken(Token scribeToken, profileId) {
+        super(scribeToken)
         this.profileId = profileId
         this.principal = profileId
     }
