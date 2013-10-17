@@ -14,7 +14,7 @@
  */
 
 import grails.util.GrailsNameUtils
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 includeTargets << new File("$springSecurityOauthPluginDir/scripts/_OauthCommon.groovy")
 //includeTargets << grailsScript('_GrailsBootstrap')
