@@ -16,9 +16,9 @@
 package ${oAuthIDPackageName}
 
 import grails.plugin.springsecurity.oauth.OAuthToken
-import org.codehaus.groovy.grails.plugins.springsecurity.GormUserDetailsService
-import org.codehaus.groovy.grails.plugins.springsecurity.GrailsUser
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.GormUserDetailsService
+import grails.plugin.springsecurity.GrailsUser
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.savedrequest.DefaultSavedRequest
