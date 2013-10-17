@@ -62,7 +62,7 @@ private boolean configure() {
     }
 
     def SpringSecurityUtils = classLoader.loadClass(
-            'org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils')
+            'grails.plugin.springsecurity.SpringSecurityUtils')
     SpringSecurityUtils.loadSecondaryConfig 'DefaultSpringSecurityOAuthConfig'
     conf = SpringSecurityUtils.securityConfig
 
