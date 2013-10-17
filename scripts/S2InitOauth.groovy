@@ -155,7 +155,7 @@ private void updateConfig() {
     if (configFile.exists()) {
         configFile.withWriterAppend {
             it.writeLine '\n// Added by the Spring Security OAuth plugin:'
-            it.writeLine "grails.plugins.springsecurity.oauth.domainClass = '${oAuthIDPackageName}.${oAuthIDClassName}'"
+            it.writeLine "grails.plugin.springsecurity.oauth.domainClass = '${oAuthIDPackageName}.${oAuthIDClassName}'"
         }
     }
 }

@@ -95,7 +95,7 @@ splitClassName = { String fullName ->
 
 checkValue = { String value, String attributeName ->
 	if (!value) {
-		errorMessage "\nERROR: Cannot generate; grails.plugins.springsecurity.$attributeName isn't set"
+		errorMessage "\nERROR: Cannot generate; grails.plugin.springsecurity.$attributeName isn't set"
 		System.exit 1
 	}
 }
