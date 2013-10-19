@@ -219,7 +219,7 @@ class SpringSecurityOAuthController {
         def authorities = userAuthorities.collect { new GrantedAuthorityImpl(it."\${authorityPropertyName}") }
 
         oAuthToken.principal = new GrailsUser(username, password, enabled, !accountExpired, !passwordExpired,
-                !accountLocked, authorities ?: GormUserDetailsService.NO_ROLES, user.id)
+                !accountLocked, authorities ?: GormUserDetailsService.NO_ROLE, user.id)
         oAuthToken.authorities = authorities
         oAuthToken.authenticated = true
 
