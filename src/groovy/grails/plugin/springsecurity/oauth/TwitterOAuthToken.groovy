@@ -29,15 +29,21 @@ class TwitterOAuthToken extends OAuthToken {
     public static final String PROVIDER_NAME = "twitter"
 
     String profileId
+    String screenName
 
-    TwitterOAuthToken(Token accessToken, String profileId) {
+    TwitterOAuthToken(Token accessToken, String profileId, String screenName) {
         super(accessToken)
         this.profileId = profileId
         this.principal = profileId
+        this.screenName = screenName
     }
 
     String getSocialId() {
         return profileId
+    }
+
+    String getScreenName() {
+        return screenName
     }
 
     String getProviderName() {

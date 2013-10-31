@@ -29,7 +29,7 @@ class TwitterSpringSecurityOAuthService {
 
     def createAuthToken(Token accessToken) {
         def response = oauthService.getTwitterResource(accessToken, 'https://api.twitter.com/1.1/account/verify_credentials.json')
-        def user        
+        def user
         try {
             user = JSON.parse(response.body)
         } catch (Exception e) {
@@ -41,7 +41,8 @@ class TwitterSpringSecurityOAuthService {
             throw new OAuthLoginException("No user id from Twitter")
         }
         String profileId = "${user.id}"
-        return new TwitterOAuthToken(accessToken, profileId)
+        String screenName = "${user.screen_name}"
+        return new TwitterOAuthToken(accessToken, profileId, screenName)
     }
 
 }
