@@ -14,7 +14,7 @@
  */
 
 import grails.util.GrailsNameUtils
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 includeTargets << new File("$springSecurityOauthPluginDir/scripts/_OauthCommon.groovy")
 //includeTargets << grailsScript('_GrailsBootstrap')
@@ -62,7 +62,7 @@ private boolean configure() {
     }
 
     def SpringSecurityUtils = classLoader.loadClass(
-            'org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils')
+            'grails.plugin.springsecurity.SpringSecurityUtils')
     SpringSecurityUtils.loadSecondaryConfig 'DefaultSpringSecurityOAuthConfig'
     conf = SpringSecurityUtils.securityConfig
 
@@ -155,7 +155,7 @@ private void updateConfig() {
     if (configFile.exists()) {
         configFile.withWriterAppend {
             it.writeLine '\n// Added by the Spring Security OAuth plugin:'
-            it.writeLine "grails.plugins.springsecurity.oauth.domainClass = '${oAuthIDPackageName}.${oAuthIDClassName}'"
+            it.writeLine "grails.plugin.springsecurity.oauth.domainClass = '${oAuthIDPackageName}.${oAuthIDClassName}'"
         }
     }
 }

@@ -40,6 +40,10 @@ class FacebookOAuthToken extends OAuthToken {
         return profileId
     }
 
+    String getScreenName() {
+        return profileId
+    }
+
     String getProviderName() {
         return PROVIDER_NAME
     }

@@ -39,6 +39,10 @@ class YahooOAuthToken extends OAuthToken {
         return profile.guid
     }
 
+    String getScreenName() {
+        return profile.guid
+    }
+
     String getProviderName() {
         return PROVIDER_NAME
     }

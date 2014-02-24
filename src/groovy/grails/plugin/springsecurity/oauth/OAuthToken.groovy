@@ -63,6 +63,8 @@ abstract class OAuthToken extends AbstractAuthenticationToken {
 
     abstract String getSocialId()
 
+    abstract String getScreenName()
+
     /**
      * Returns the parameters in the OAuth access token as a map.
      */

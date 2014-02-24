@@ -39,6 +39,10 @@ class GoogleOAuthToken extends OAuthToken {
         return email
     }
 
+    String getScreenName() {
+        return email
+    }
+
     String getProviderName() {
         return PROVIDER_NAME
     }
